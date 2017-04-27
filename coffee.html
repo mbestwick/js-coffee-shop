@@ -48,16 +48,47 @@
 
     // Set these variables to their DOM elements
 
+    var drinksOrdered = [];
+
     var myImage = document.getElementById('coffee-image');
     var myRevenueMessage = document.getElementById('revenue');
+    var espressoButton = document.getElementById('espresso');
+    var latteButton = document.getElementById('latte');
+    var hotChocolateButton = document.getElementById('hot-chocolate')
 
     myImage.src = "static/coffee_beans.jpg"
 
-    function makeCoffee(){
+    function showCoffeeMug(){
         myImage.src = "static/coffee_mug.jpg";
     }
 
-    myImage.addEventListener('click', makeCoffee);
+    function showCoffeeBeans(){
+        myImage.src = "static/coffee_beans.jpg";
+    }
+
+    function showCoffeeMachine(){
+        myImage.src = "static/coffee_machine.jpg";
+    }
+
+    function makeCoffee(drinkType) {
+        drinksOrdered.push(drinkType);
+        showCoffeeMachine();
+        setTimeout(showCoffeeMug, 1500);
+        setTimeout(showCoffeeBeans, 4000);
+    }
+
+
+    myImage.addEventListener('click', 
+                    function () { return makeCoffee('brew'); });
+
+    espressoButton.addEventListener('click', 
+                    function () { return makeCoffee('espresso'); });
+    latteButton.addEventListener('click', 
+                    function () { return makeCoffee('latte'); });
+    hotChocolateButton.addEventListener('click', 
+                    function () { return makeCoffee('hot-chocolate'); });
+
+    myImage.src = "static/coffee_beans.jpg";
 
     // use this JavaScript object in further study step
 
